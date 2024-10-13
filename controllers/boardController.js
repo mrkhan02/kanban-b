@@ -110,7 +110,7 @@ export async function deleteBoard(req, res) {
         }
 
         await Task.deleteMany({ board: board._id });
-        await board.remove();   
+        await Board.deleteOne({ _id: req.params.id });  
 
         res.status(200).json({ message: 'Board deleted' });
     } catch (error) {
