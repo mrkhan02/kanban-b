@@ -1,6 +1,7 @@
 import express, { json } from 'express';
 import { config } from 'dotenv';
-import connectDB from './config/db.js';  // Ensure .js extension is present
+import cors from 'cors'; // Import CORS middleware
+import connectDB from './config/db.js'; // Ensure .js extension is present
 
 // Load environment variables
 config();
@@ -11,10 +12,17 @@ connectDB();
 // Initialize express app
 const app = express();
 
+// Enable CORS for localhost (development environment)
+const corsOptions = {
+  origin: 'http://localhost:3000', // Allow requests from localhost:3000 (React frontend or other clients)
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions)); // Use CORS middleware with specified options
+
 // Body parser middleware
 app.use(json());
 
-// Load routes (convert require to import)
+// Load routes
 import authRoutes from './routes/auth.js';
 import kanbanRoutes from './routes/kanban.js';
 
