@@ -14,7 +14,7 @@ const app = express();
 
 // Enable CORS for localhost (development environment)
 const corsOptions = {
-  origin: 'http://localhost:3000', // Allow requests from localhost:3000 (React frontend or other clients)
+  origin: 'https://taskmate-frontend.vercel.app', // Allow requests from localhost:3000 (React frontend or other clients)
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions)); // Use CORS middleware with specified options
